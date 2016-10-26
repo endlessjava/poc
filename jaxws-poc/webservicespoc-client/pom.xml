@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.endless</groupId>
+    <artifactId>webservicespoc-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <cxf.version>3.1.4</cxf.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.endless</groupId>
+            <artifactId>webservicespoc-wsdl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <!--<exclusions>
+                <exclusion>
+                    <groupId>com.endless</groupId>
+                    <artifactId>webservicespoc</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>${cxf.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-webservicespoc-client</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>C:\\Users\\489175\\git-repo\\poc\\webservicespoc-wsdl\\target\\generated\\wsdl\\PocService.wsdl</wsdl>
+                                    <!--<wsdlArtifact>
+                                        <groupId>com.endless</groupId>
+                                        <artifactId>webservicespoc-wsdl</artifactId>
+                                        <version>1.0-SNAPSHOT</version>
+                                        &lt;!&ndash;<classifier>POCService</classifier>&ndash;&gt;
+                                    </wsdlArtifact>-->
+                                    <bindingFiles>
+                                        <bindingFile>${basedir}/src/main/resources/binding.xml</bindingFile>
+                                    </bindingFiles>
+                                    <extraargs>
+                                        <!--<extraarg>-versbose</extraarg>-->
+                                        <extraarg>-mark-generated</extraarg>
+                                        <extraarg>-frontend</extraarg>
+                                        <extraarg>jaxws21</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
